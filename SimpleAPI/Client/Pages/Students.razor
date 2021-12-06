@@ -1,7 +1,57 @@
 ﻿@page "/students"
+@inject HttpClient httpClient 
 
 <h3>Students</h3>
+<div class="form-group">
+    <label>First Name</label>
+    <input type="text" class="form-control" placeholder="Student First Name" @bind="studentDto.FirstName">
+</div>
+<div class="form-group">
+    <label>Last Name</label>
+    <input type="text" class="form-control" placeholder="Student Last Name" @bind="studentDto.LastName">
+</div>
+<button type="submit" class="btn btn-primary" @onclick="AddStudent">Add Student</button>
+<hr />
+@if (students.Count > 0)
+{
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            @foreach (var student in students)
+            {
+                <th scope="row">*</th>
+                <td>@student.FirstName</td>
+                <td>@student.LastName</td>
+            }
+        </tr>
+    </tbody>
+</table>
+}
 
 @code {
+    private List<StudentDto> students = new();
+    private StudentDto studentDto = new();
 
+    protected override async Task OnInitializedAsync()
+    {
+        await GetStudents();
+    }
+
+    private async Task GetStudents()
+    {
+        students = await httpClient.GetFromJsonAsync<List<StudentDto>>("api/student/getall");
+    }
+
+    private async Task AddStudent()
+    {
+        await httpClient.PostAsJsonAsync<StudentDto>("api/student/add",studentDto);
+        studentDto = new();
+    }
 }
