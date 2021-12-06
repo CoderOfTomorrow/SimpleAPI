@@ -23,15 +23,15 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            @foreach (var student in students)
-            {
+        @foreach (var student in students)
+        {
+            <tr>
                 <th scope="row">*</th>
                 <td>@student.FirstName</td>
                 <td>@student.LastName</td>
-            }
-        </tr>
-    </tbody>
+            </tr>
+        }
+        </tbody>
 </table>
 }
 
@@ -46,12 +46,13 @@
 
     private async Task GetStudents()
     {
-        students = await httpClient.GetFromJsonAsync<List<StudentDto>>("api/student/getall");
+        students = await httpClient.GetFromJsonAsync<List<StudentDto>>("api/student/all");
     }
 
     private async Task AddStudent()
     {
         await httpClient.PostAsJsonAsync<StudentDto>("api/student/add",studentDto);
         studentDto = new();
+        await GetStudents();
     }
 }

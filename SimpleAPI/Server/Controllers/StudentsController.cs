@@ -41,7 +41,7 @@ namespace SimpleAPI.Server.Controllers
 
         [HttpPost]
         [Route("add")]
-        public async Task<IActionResult> AddStudent([FromBody]StudentDto data)
+        public async Task<IActionResult> AddStudent([FromBody] StudentDto data)
         {
             Student student = new()
             {
