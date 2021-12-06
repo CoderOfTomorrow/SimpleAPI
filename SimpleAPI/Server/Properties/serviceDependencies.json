@@ -3,6 +3,16 @@
     "mssql1": {
       "type": "mssql",
       "connectionId": "ConnectionStrings:SimpleAPI"
+    },
+    "mssql2": {
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:DefaultConnection"
+    },
+    "secrets1": {
+      "type": "secrets",
+      "connectionId": "",
+      "suggestion": "true",
+      "ignored": "true"
     }
   }
 }

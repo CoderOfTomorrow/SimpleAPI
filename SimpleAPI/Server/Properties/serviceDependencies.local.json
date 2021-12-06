@@ -5,6 +5,12 @@
       "type": "mssql.azure",
       "connectionId": "ConnectionStrings:SimpleAPI",
       "secretStore": "LocalSecretsFile"
+    },
+    "mssql2": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/simplestudentsapi/databases/SimpleAPI.Server_db",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:DefaultConnection",
+      "secretStore": null
     }
   }
 }
